@@ -1,0 +1,12 @@
+html{
+  font-size: 62.5%;
+}
+body {
+  min-height: 200vh;
+  padding-top: 7rem;
+  font: 1.4rem "Comfortaa", cursive;
+}
+
+a {
+  color: #00B7FF;
+}
