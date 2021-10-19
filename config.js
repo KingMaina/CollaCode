@@ -1,9 +1,12 @@
 'use strict';
 
-exports.mailer = {
-    service: 'Gmail',
-    auth: {
-        user: 'drew29799@gmail.com',
-        pass: 'Drewdustbin#254',
+module.exports = {
+    mailer: {
+        service: 'Gmail',
+        auth: {
+            user: '#',
+            pass: '#',
+        },
+        dbConnstring: 'mongodb://127.0.0.1:27017/collacode'
     }
 };
