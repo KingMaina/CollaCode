@@ -1,9 +1,9 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 const nodemailer = require('nodemailer');
-var config = require('../config');
-var transporter = nodemailer.createTransport(config.mailer);
+const config = require('../config');
+let transporter = nodemailer.createTransport(config.mailer);
 
 /* Get HOME page. */
 router.get('/', function (req, res, next) {
@@ -21,10 +21,10 @@ router.route('/contact')
     res.render('contact', { title: 'Get in touch with us' });
   })
   .post(function (req, res, next) {
-    req.checkBody('name', 'Invalid name').notEmpty();
-    req.checkBody('email', "Invalid Email").isEmail();
-    req.checkBody('message', "Empty Message").notEmpty();
-    var errors = req.validate();
+    req.check('name', 'Invalid name').notEmpty();
+    req.check('email', "Invalid Email").isEmail();
+    req.check('message', "Empty Message").notEmpty();
+    let errors = validationErrors(req);
 
     if (errors) {
       res.render('contact', {
@@ -38,7 +38,7 @@ router.route('/contact')
     else {
 
       /* CREATE MAIL STRUCTURE */
-      var mailOptions = {
+      let mailOptions = {
         from: 'CollaCode <no-reply@collacode.com>',
         to: 'drew29799@gmail.com',
         subject: 'You got a new message from a visitor!',
@@ -80,12 +80,4 @@ router.route('/contact')
       // main().catch(console.error);
     }
   });
-
-  router.get('/login', function(req, res, next){
-    res.render('login', {title: "Login"});
-  });
-  router.get('/register', function(req, res, next){
-    res.render('register', {title: 'Register a new account'});
-  });
-
-module.exports = router;
+  module.exports = router;

@@ -7,6 +7,8 @@ module.exports = {
             user: '#',
             pass: '#',
         },
-        dbConnstring: 'mongodb://127.0.0.1:27017/collacode'
-    }
+        
+    },
+    dbConnstring: 'mongodb://127.0.0.1:27017/collacode',
+    sessionKey: 'CollaCodeSession'
 };
