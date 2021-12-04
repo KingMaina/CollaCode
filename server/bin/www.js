@@ -4,9 +4,12 @@
  * Module dependencies.
  */
 
-var app = require('../app');
-var debug = require('debug')('collacode:server');
-var http = require('http');
+import app from '../app.js';
+import { createServer } from 'http';
+import debugLib from 'debug';
+const debug = debugLib('collacode:server');
+import socket_server from '../socket-server.js';
+
 
 /**
  * Get port from environment and store in Express.
@@ -19,8 +22,8 @@ app.set('port', port);
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
-
+var server = createServer(app);
+socket_server(server);
 /**
  * Listen on provided port, on all network interfaces.
  */

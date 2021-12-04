@@ -1,13 +1,14 @@
-const express = require('express');
-const router = express.Router();
+import { Router } from 'express';
+const router = Router();
 
-const nodemailer = require('nodemailer');
-const config = require('../config');
-let transporter = nodemailer.createTransport(config.mailer);
+import { createTransport } from 'nodemailer';
+import { mailer } from '../config.js';
+let transporter = createTransport(mailer);
 
 /* Get HOME page. */
 router.get('/', function (req, res, next) {
   res.render('index', { title: 'CollaCode - collaborate and share code with others!' });
+  // res.render('register', {title: 'register '})
 });
 
 /* Get ABOUT page */
@@ -80,4 +81,4 @@ router.route('/contact')
       // main().catch(console.error);
     }
   });
-  module.exports = router;
+  export default router;
