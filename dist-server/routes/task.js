@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = void 0;
+exports["default"] = exports.Task = void 0;
 
 var _express = require("express");
 
@@ -18,6 +18,7 @@ var router = (0, _express.Router)();
 var taskModel = _mongoose["default"].model('Task', _task["default"]); // Route for creating a task
 
 
+exports.Task = taskModel;
 router.get('/createTask', function (req, res) {
   var newTask = new taskModel();
   newTask.save(function (err, data) {

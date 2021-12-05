@@ -36,4 +36,5 @@ router.get('/task/:id', (req, res, next) => {
     }
 });
 
+export {taskModel as Task};
 export default router;
