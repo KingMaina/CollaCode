@@ -4,69 +4,175 @@
 <head>
   <title>{{title}}</title>
 
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Collacode. A real-time collaborative online code editor for pair programming.">
+  <meta name="author" content="Andrew Maina">
+
   <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  {{!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> --}}
 
   <!-- Optional theme -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-    integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  {{!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+    integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"> --}}
 
+  <!-- Styling  -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/codemirror.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/theme/monokai.min.css" />
-  <link rel='stylesheet' href='/stylesheets/style.css' />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/codemirror/lib/codemirror.css"/>
+
+
+  {{!-- <link rel='stylesheet' href='/stylesheets/style.css' /> --}}
+  {{!-- <link rel="stylesheet" href="/codemirror/lib/codemirror.css" /> --}}
+
+  <link href="/stylesheets/bootstrap.css" rel="stylesheet">
+  <link href="/stylesheets/fontawesome-all.css" rel="stylesheet">
+  <link href="/stylesheets/swiper.css" rel="stylesheet">
+  <link href="/stylesheets/magnific-popup.css" rel="stylesheet">
+  <link href="/stylesheets/styles.css" rel="stylesheet">
+  {{!-- <link rel="icon" href="/images/favicon.png"> --}}
+
   {{!-- import JQuery Library --}}
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+   {{!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> --}}
   <!-- Latest compiled and minified JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-    crossorigin="anonymous"></script>
+  {{!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" --}}
+    {{!-- integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" --}}
+    {{!-- crossorigin="anonymous"></script> --}}
+
 </head>
 
-<body>
-  {{!-- ADD navigation links --}}
-  <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-          aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Toggle Navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a href="/" class="navbar-brand">CollaCode</a>
-      </div> 
-      <div class="collapse navbar-collapse" id="navbar">
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="/">Home</a></li>
-          <li><a href="/about">About</a></li>
-          <li><a href="/contact">Contact</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          {{#if user}}
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-              aria-expanded="false">{{user.name}}
-              <span class="caret"></span>
-            </a>
+<body data-spy="scroll" data-target=".fixed-top">
+      <nav class="navbar navbar-expand-lg fixed-top navbar-light">
+        <div class="container">
+            
+             <a class="navbar-brand logo-text page-scroll" href="/">CollaCode</a>
+
+            <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav m-auto ">
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="#header">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link page-scroll" href="/terms">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="#details">Details</a>
+                    </li>
+
+
+                    {{!-- <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Drop</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown01">
+                            <a class="dropdown-item page-scroll" href="/article">Article Details</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item page-scroll" href="/terms">Terms Conditions</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item page-scroll" href="/privacy">Privacy Policy</a>
+                        </div>
+                    </li> --}}
+                    {{!-- <li class="nav-item">
+                        <a class="nav-link page-scroll" href="#video">Video</a>
+                    </li> --}}
+                </ul>
+                {{#if user}}
+                    <span>Welcome " </span>
+                    <li style="list-style-type: none;" class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                        aria-expanded="false">{{user.name}}
+                        <span class="caret"></span>
+                        </a>
             <ul class="dropdown-menu">
               <li><a href="/logout">Logout</a></li>
             </ul>
-          </li> 
+          </li>
           {{else}}
-          <li><a href="/login">Login</a></li>
-          <li><a href="/register">Register</a></li>
-          {{/if}}
-        </ul>
-      </div>
-    </div>
-  </nav>
-  {{{body}}}
-</body>
+                <span class="nav-item">
+                        <a class="nav-link page-scroll" href="/login">Login</a>
+                
+                </span>
+                <span class="nav-item">
+                    <a class="btn-solid-sm page-scroll" href="/register">Register</a>
+                </span>
+                {{/if}}
+            </div> <!-- end of navbar-collapse -->
+        </div> <!-- end of container -->
+    </nav>
 
+  {{{body}}}
+     <!-- Footer -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer-col first">
+                        <h6>About CollaCode</h6>
+                        <p class="p-small">CollaCode is a very easy to use real time online colaborative IDE that enables you and your team to work on projects using pair programming more effeciantly.</p>
+                    </div> 
+                    <div class="footer-col second">
+                        <h6>Links</h6>
+                        <ul class="list-unstyled li-space-lg p-small">
+                            {{!-- <li>Important: <a href="terms.html">Terms & Conditions</a>, <a href="privacy.html">Privacy Policy</a></li> --}}
+                            {{!-- <li>Menu: <a class="page-scroll" href="/">Home</a>, <a class="page-scroll" href="">Features</a>, <a class="page-scroll" href="#details">Details</a>, <a class="page-scroll" href="#video">Video</a></li> --}}
+                            <li>Menu: <a class="page-scroll" href="/">Home</a>, <a class="page-scroll" href="/about">About</a>, <a class="page-scroll" href="/contact">Contact</a></li>
+                        </ul>
+                    </div> 
+                    <div class="footer-col third">
+                        <span class="fa-stack">
+                            <a href="#">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-facebook-f fa-stack-1x"></i>
+                            </a>
+                        </span>
+                        <span class="fa-stack">
+                            <a href="#">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-twitter fa-stack-1x"></i>
+                            </a>
+                        </span>
+                        <span class="fa-stack">
+                            <a href="#">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-pinterest-p fa-stack-1x"></i>
+                            </a>
+                        </span>
+                        <span class="fa-stack">
+                            <a href="#">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-instagram fa-stack-1x"></i>
+                            </a>
+                        </span>
+                        <p class="p-small">We would love to hear from you <a href="mailto:contact@site.com"><strong>info@collacode.com</strong></a></p>
+                    </div>
+                </div>
+            </div> 
+        </div> 
+    </div> 
+    <!-- Copyright -->
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p class="p-small">Copyright © <a href="#">CollaCode</a></p>
+                </div> 
+            </div> 
+        </div>
+    </div>
+    
+    <script src="/javascripts/jquery.min.js"></script> 
+    <script src="/javascripts/bootstrap.min.js"></script>
+    <script src="/javascripts/jquery.easing.min.js"></script> 
+    <script src="/javascripts/jquery.magnific-popup.js"></script> 
+    <script src="/javascripts/swiper.min.js"></script> 
+    <script src="/javascripts/scripts.js"></script> 
+
+</body>
 </html>

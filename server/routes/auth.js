@@ -4,28 +4,27 @@ import passport from 'passport';
 import mongoose from 'mongoose';
 const { check, validationResult } = ExpressValidator;
 import userSchema from '../models/user.js';
+import session from 'express-session';
 
 const router = Router();
-const {User} = mongoose.model('User', userSchema);
+const userModel = mongoose.model('User', userSchema);
 
 router.route('/login')
     .get((req, res, next) => {
         res.render('login', { title: "Login" });
     })
     .post(passport.authenticate('local', {
-            successRedirect: '/',
-            failureRedirect: '/login',
-            failureFlash: true
+            successRedirect: '/createTask',
+            failureRedirect: '/login'
         } 
     ),  (req, res, next) => {
-         req.session.save(() => {
+         req.session.save((err) => {
+             if (err){
+                res.render('error', {errorMessages:err.array()})
+             }else{
             return res.redirect('/', {user: req.user});
+             }
         });
-        //  req.logIn((user, err) => {
-        //     if (err) { return next(err)};
-        //     return res.redirect('/');
-        // }
-        
     });
 
 router.route('/register')
@@ -71,4 +70,5 @@ router.get('/logout', (req, res) => {
     res.redirect('/login');
 });
 
+export {userModel as User};
 export default router;

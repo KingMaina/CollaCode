@@ -11,6 +11,8 @@ var _mongoose = _interopRequireDefault(require("mongoose"));
 
 var _task = _interopRequireDefault(require("../models/task.js"));
 
+var _auth = require("./auth.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var router = (0, _express.Router)();
@@ -20,6 +22,12 @@ var taskModel = _mongoose["default"].model('Task', _task["default"]); // Route f
 
 exports.Task = taskModel;
 router.get('/createTask', function (req, res) {
+  // if (!User) {
+  //     res.render('login', { title: "Login to Continue" });
+  // }
+  // if (!req.params.id) {
+  //     res.redirect('/login');
+  // } else {
   var newTask = new taskModel();
   newTask.save(function (err, data) {
     if (err) {
@@ -28,7 +36,7 @@ router.get('/createTask', function (req, res) {
     } else {
       res.redirect('/task/' + data._id);
     }
-  });
+  }); // }
 }); // Route for creating a task room
 
 router.get('/task/:id', function (req, res, next) {

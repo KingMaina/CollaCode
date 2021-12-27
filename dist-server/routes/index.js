@@ -22,15 +22,20 @@ router.get('/', function (req, res, next) {
 });
 /* Get ABOUT page */
 
-router.get('/about', function (req, res, next) {
-  res.render('about', {
+router.get('/article', function (req, res, next) {
+  res.render('article', {
+    title: 'CollaCode - collaborate and share code with others!'
+  });
+});
+router.get('/home', function (req, res, next) {
+  res.render('home', {
     title: 'CollaCode - collaborate and share code with others!'
   });
 });
 /* Get CONTACT page */
 
-router.route('/contact').get(function (req, res, next) {
-  res.render('contact', {
+router.route('/terms').get(function (req, res, next) {
+  res.render('terms', {
     title: 'Get in touch with us'
   });
 }).post(function (req, res, next) {

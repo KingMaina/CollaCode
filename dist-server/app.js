@@ -42,7 +42,9 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 // Connect to the MongoDB database
-_mongoose["default"].connect(_config.dbConnstring);
+_mongoose["default"].connect(_config.dbConnstring, function (err) {
+  if (err) console.error(err);
+});
 
 global.User = './routes/auth.js';
 global.Task = './models/task.js';
@@ -53,6 +55,15 @@ var _dirname = _path["default"].resolve(); // view engine setup
 
 app.set('views', "".concat(_dirname, "/views"));
 app.set('view engine', 'hbs');
+var oneDay = 1000 * 60 * 60 * 24;
+app.use((0, _expressSession["default"])({
+  secret: "".concat(_config.sessionKey),
+  saveUninitialized: true,
+  cookie: {
+    maxAge: oneDay
+  },
+  resave: false
+}));
 app.use((0, _morgan["default"])('dev'));
 app.use((0, _express.json)());
 app.use((0, _express.urlencoded)({
@@ -60,19 +71,17 @@ app.use((0, _express.urlencoded)({
 }));
 app.use((0, _expressValidator["default"])());
 app.use((0, _cookieParser["default"])());
-app.use((0, _expressSession["default"])({
-  secret: _config.dbConnstring
-}));
 app.use((0, _express.urlencoded)({
   extended: false
 }));
 app.use(_passport["default"].initialize());
 app.use(_passport["default"].session());
-app.use(_express["default"]["static"]("".concat(_dirname, "/public")));
-app.use('/codemirror', _express["default"]["static"](_path["default"].join(_dirname, 'node_modules', 'codemirror')));
-app.use('/yjs', _express["default"]["static"](_path["default"].join(_dirname, 'node_modules', 'yjs')));
-app.use('/y-websocket', _express["default"]["static"](_path["default"].join(_dirname, 'node_modules', 'y-websocket')));
-app.use('/y-codemirror', _express["default"]["static"](_path["default"].join(_dirname, 'node_modules', 'y-codemirror')));
+app.use(_express["default"]["static"]("".concat(_dirname, "/public"))); // app.use('/codemirror', express.static(path.join(__dirname, 'node_modules', 'codemirror')));
+// app.use('/yjs', express.static(path.join(__dirname, 'node_modules', 'yjs')));
+// app.use('/y-websocket', express.static(path.join(__dirname, 'node_modules', 'y-websocket')));
+// app.use('/y-codemirror', express.static(path.join(__dirname, 'node_modules', 'y-codemirror')));
+// app.use('/peerjs', express.static(path.join(__dirname, 'node_modules', 'peerjs')));
+
 app.use(function (req, res, next) {
   if (req.isAuthenticated()) {
     res.locals.user = req.user;

@@ -12,14 +12,18 @@ router.get('/', function (req, res, next) {
 });
 
 /* Get ABOUT page */
-router.get('/about', function (req, res, next) {
-  res.render('about', { title: 'CollaCode - collaborate and share code with others!' });
+router.get('/article', function (req, res, next) {
+  res.render('article', { title: 'CollaCode - collaborate and share code with others!' });
+});
+
+router.get('/home', function (req, res, next) {
+  res.render('home', { title: 'CollaCode - collaborate and share code with others!' });
 });
 
 /* Get CONTACT page */
-router.route('/contact')
+router.route('/terms')
   .get(function (req, res, next) {
-    res.render('contact', { title: 'Get in touch with us' });
+    res.render('terms', { title: 'Get in touch with us' });
   })
   .post(function (req, res, next) {
     req.check('name', 'Invalid name').notEmpty();

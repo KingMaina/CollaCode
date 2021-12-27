@@ -1,11 +1,21 @@
-<form method="post" class="form-signin">
+ <!-- Header -->
+    <header class="ex-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-10 offset-xl-1">
+                    <h1 class="text-center">Login to continue</h1>
+                </div>
+            </div> 
+        </div> 
+    </header>
+
+<form method="post" class=" form-signin" style="max-width: 33rem;padding: 1.5rem;margin: 0 auto;">
         {{#each errorMessages}}
         <div class="alert alert-danger">
             {{this.msg}}
         </div>
     {{/each}}
-    <h2 class="form-sign-in-heading text-center">Please Sign In</h2>
-    <br>
+    {{!-- <h2 class="form-sign-in-heading text-center">Please Sign In</h2> --}}
     <input type="email" name="email" class="form-control" placeholder="Name" required autofocus>
     <br>
     <input type="password" name="password" class="form-control" placeholder="Password" required>

@@ -1,5 +1,4 @@
 import createError from 'http-errors';
-
 import express, { json, urlencoded} from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser';
@@ -7,48 +6,49 @@ import logger from 'morgan';
 import expressValidator from 'express-validator';
 import mongoose from 'mongoose';
 import passport from 'passport'
-
-import session from 'express-session';
-
+import sessions from 'express-session';
 import './passport.js';
-import { dbConnstring } from './config.js';
+import { dbConnstring, sessionKey} from './config.js';
 
 import indexRoute from './routes/index.js';
 import authRoute from './routes/auth.js';
 import taskRoute from './routes/task.js';
- 
-
 
 // Connect to the MongoDB database
-mongoose.connect(dbConnstring);
+mongoose.connect(dbConnstring, err => {
+  if (err) console.error(err);
+});
 global.User = './routes/auth.js';
 global.Task = './models/task.js';
 
 const app = express();
 const __dirname = path.resolve();
- 
 // view engine setup
 app.set('views',`${__dirname}/views`);
 app.set('view engine', 'hbs');
-
+const oneDay = 1000 * 60 * 60 * 24;
+app.use(sessions({
+  secret: `${sessionKey}`,
+  saveUninitialized: true,
+  cookie: {maxAge: oneDay},
+  resave: false
+}));
 app.use(logger('dev'));
 app.use(json());
 app.use(urlencoded({ extended: false }));
 app.use(expressValidator());
 app.use(cookieParser());
-app.use(session({secret: dbConnstring}));
 app.use(urlencoded({extended: false}));
-
-
-
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(`${__dirname}/public`));
 
-app.use('/codemirror', express.static(path.join(__dirname, 'node_modules', 'codemirror')));
-app.use('/yjs', express.static(path.join(__dirname, 'node_modules', 'yjs')));
-app.use('/y-websocket', express.static(path.join(__dirname, 'node_modules', 'y-websocket')));
-app.use('/y-codemirror', express.static(path.join(__dirname, 'node_modules', 'y-codemirror')));
+// app.use('/codemirror', express.static(path.join(__dirname, 'node_modules', 'codemirror')));
+// app.use('/yjs', express.static(path.join(__dirname, 'node_modules', 'yjs')));
+// app.use('/y-websocket', express.static(path.join(__dirname, 'node_modules', 'y-websocket')));
+// app.use('/y-codemirror', express.static(path.join(__dirname, 'node_modules', 'y-codemirror')));
+// app.use('/peerjs', express.static(path.join(__dirname, 'node_modules', 'peerjs')));
+
 
 app.use((req, res, next) => {
   if (req.isAuthenticated()) {

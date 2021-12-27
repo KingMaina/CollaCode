@@ -1,49 +1,55 @@
+ <!-- Header -->
+    <header class="ex-header" style="padding-top: 6rem;">
+        <div class="container">
+            <div class="row">
+            </div> 
+        </div> 
+    </header>
+
 <div>
-    <div class="row">
+    <div class="row pl-5">
         <div class="col-md-8">
             <textarea id="code-screen">{{content}}</textarea>
+            <button id="save-code" type="submit">Save Code</button>
         </div>
         <div class="col-md-4" id="chatbox">
-            <div class="panel panel-primary">
+            <div class="card panel-primary">
 
                 <!-- VIDEO CALL SECTION-->
 
                 <div id="video-container">
-                    <video autoplay id="second-video"></video>
-                    <video autoplay id="my-video" muted="true"></video>
+                    <video autoplay id="second-video" width="350" height="350" muted="true"></video>
+                    <video autoplay id="my-video" muted="true" width="350" height="350"></video>
                     <div id="step2">
-                        <p>Your ID: <span id="my-id">...</span></p>
+                        <p>Your ID: <span id="myId">...</span></p>
                         <div class="form-inline">
-                            <input type="text" class="form-control" placeholder="Call User ID..." id="callto-id">
+                            <input type="text" class="form-control" placeholder="Call User ID..." id="call-to-id">
                             <a href="#" class="btn btn-sm btn-success" id="make-call">Call</a>
                         </div>
                     </div>
                     <div id="step3">
-                        <p>Talk to <span id="second-id">...</span>
+                        <p>Talking to <span id="second-id">...</span>
                             <a href="#" class="btn btn-sm btn-danger" id="end-call">End call</a>
                         </p>
                     </div>
                 </div>
 
 
-
                 <!-- CHAT ROOM SECTION-->
-                <div class="panel-heading">
+                <div class="card-header">
                     Chat Room
-                    <span class="pull-right" id="chatbox-username">
+                    <span class="float-right" id="chatbox-username">
                         {{#if user}}
-                        {{user.name}}
-                        {{else}}
-
+                            {{user.name}}
                         {{/if}}
                     </span>
                 </div>
-                <div class="panel-body">
-                    <ul class="media-ist" style="height: 30rem; overflow-y: scroll" id="chatbox-listMessages">
+                <div class="card-body">
+                    <ul class="media-ist" style="height: 10rem; overflow-y: scroll" id="chatbox-listMessages">
 
                     </ul>
                 </div>
-                <div class="panel-footer">
+                <div class="card-footer">
                     <div class="input-group">
                         <input type="text" class="form-control" id="userMessage" placeholder="Enter message" />
                         <span class="input-group-btn">
@@ -64,4 +70,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/codemirror.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/mode/javascript/javascript.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
+{{!-- <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script> --}}
 <script type="text/javascript" src="/javascripts/task_bundle.js" async defer></script>

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = void 0;
+exports["default"] = exports.User = void 0;
 
 var _express = require("express");
 
@@ -15,32 +15,36 @@ var _mongoose = _interopRequireDefault(require("mongoose"));
 
 var _user = _interopRequireDefault(require("../models/user.js"));
 
+var _expressSession = _interopRequireDefault(require("express-session"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var check = _index["default"].check,
     validationResult = _index["default"].validationResult;
 var router = (0, _express.Router)();
 
-var _mongoose$model = _mongoose["default"].model('User', _user["default"]),
-    User = _mongoose$model.User;
+var userModel = _mongoose["default"].model('User', _user["default"]);
 
+exports.User = userModel;
 router.route('/login').get(function (req, res, next) {
   res.render('login', {
     title: "Login"
   });
 }).post(_passport["default"].authenticate('local', {
-  successRedirect: '/',
-  failureRedirect: '/login',
-  failureFlash: true
+  successRedirect: '/createTask',
+  failureRedirect: '/login'
 }), function (req, res, next) {
-  req.session.save(function () {
-    return res.redirect('/', {
-      user: req.user
-    });
-  }); //  req.logIn((user, err) => {
-  //     if (err) { return next(err)};
-  //     return res.redirect('/');
-  // }
+  req.session.save(function (err) {
+    if (err) {
+      res.render('error', {
+        errorMessages: err.array()
+      });
+    } else {
+      return res.redirect('/', {
+        user: req.user
+      });
+    }
+  });
 });
 router.route('/register').get(function (req, res, next) {
   res.render('register', {
