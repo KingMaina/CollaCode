@@ -1,0 +1,262 @@
+
+    <div class="containerC">
+      <div class="navigation">
+        <ul>
+          <li>
+            <a href="/">
+              <span class="icon"
+                ><i class="fa fa-globe" aria-hidden="true"></i>
+              </span>
+              <span class="title"><h2 style="color: #fff;">CollaCode</h2></span>
+              
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="icon"
+                ><i class="fa fa-home" aria-hidden="true"></i>
+              </span>
+              <span class="title">Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="icon"
+                ><i class="fa fa-users" aria-hidden="true"></i>
+              </span>
+              <span class="title">Users</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="#">
+              <span class="icon"
+                ><i class="fa fa-comment" aria-hidden="true"></i>
+              </span>
+              <span class="title">Tasks</span>
+            </a>
+          </li>
+          <li>
+            <a href="/logout">
+              <span class="icon"
+                ><i class="fa fa-sign-out" aria-hidden="true"></i>
+              </span>
+              <span class="title" >Sign Out</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="main">
+        <div class="topbar">
+          <div class="toggle" onclick="toggleMenu()"></div>
+
+          <div class="user">
+            <img src="./images/take_control.jpg" alt="An image" />
+          </div>
+        </div>
+        <div class="cardBox">
+          {{!-- <div class="cardC">
+            <div>
+              <div class="numbers">10,450</div>
+              <div class="cardName">Daily Views</div>
+            </div>
+            <div class="iconBox">
+              <i class="fa fa-eye" aria-hidden="true"></i>
+            </div>
+          </div> --}}
+          <div class="cardC">
+            <div>
+              <div class="numbers">{{users}}</div>
+              <div class="cardName">Total Users</div>
+            </div>
+            <div class="iconBox">
+              <i class="fa fa-users" aria-hidden="true"></i>
+            </div>
+          </div>
+          <div class="cardC">
+            <div>
+              <div class="numbers">{{tasks}}</div>
+              <div class="cardName">Total Workspaces</div>
+            </div>
+            <div class="iconBox">
+              <i class="fa fa-comment" aria-hidden="true"></i>
+            </div>
+          </div>
+          {{!-- <div class="cardC">
+            <div>
+              <div class="numbers">$8,051</div>
+              <div class="cardName">Earnings</div>
+            </div>
+            <div class="iconBox">
+              <i class="fa fa-usd" aria-hidden="true"></i>
+            </div>
+          </div> --}}
+        </div>
+
+        <div class="details">
+          <div class="recentOrders">
+            <div class="cardHeader pb-5">
+              <h2>Recently Registered Users</h2>
+              <a href="#" class="btnV">View All</a>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Email</td>
+                  <td>Tasks</td>
+                  {{!-- <td>Status</td> --}}
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>James</td>
+                  <td>james@gmail.com</td>
+                  <td>5</td>
+                </tr>
+                <tr>
+                  <td>Evaristo</td>
+                  <td>veda@gmail.com</td>
+                  <td>0</td>
+                </tr>
+                <tr>
+                  <td>Ben</td>
+                  <td>ben@gmail.com</td>
+                  <td>12</td>
+                </tr>
+                {{!-- <tr>
+                  <td>Washing Powder</td>
+                  <td>Ksh150</td>
+                  <td>Due</td>
+                  <td><span class="status in-progress">In Progress</span></td>
+                </tr>
+                <tr>
+                  <td>Maziwa Mala</td>
+                  <td>Ksh50</td>
+                  <td>Paid</td>
+                  <td><span class="status delivered">Delivered</span></td>
+                </tr>
+                <tr>
+                  <td>Whole Meal Bread</td>
+                  <td>Ksh100</td>
+                  <td>Due</td>
+                  <td><span class="status pending">Pending</span></td>
+                </tr>
+                <tr>
+                  <td>Cooking Oil</td>
+                  <td>Ksh1250</td>
+                  <td>Paid</td>
+                  <td><span class="status return">Returned</span></td>
+                </tr>
+                <tr>
+                  <td>Washing Powder</td>
+                  <td>Ksh150</td>
+                  <td>Due</td>
+                  <td><span class="status in-progress">In Progress</span></td>
+                </tr> --}}
+              </tbody>
+            </table>
+          </div>
+          <div class="recentCustomers">
+            <div class="cardHeader">
+              <h2>Recent Tasks</h2>
+            </div>
+            <table>
+              <tbody>
+                <tr>
+                  <td width="60px">
+                    <div class="imgBox">
+                      <img src="/images/take_control.jpg" alt="" />
+                    </div>
+                  </td>
+                  <td>
+                    <h4>Task 1<br /><span>Users</span></h4>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="60px">
+                    <div class="imgBox">
+                      <img src="/images/take_control.jpg" alt="" />
+                    </div>
+                  </td>
+                  <td>
+                    <h4>Task 2<br /><span>Users</span></h4>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="60px">
+                    <div class="imgBox">
+                      <img src="/images/take_control.jpg" alt="" />
+                    </div>
+                  </td>
+                  <td>
+                    <h4>Task 3<br /><span>Users</span></h4>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="60px">
+                    <div class="imgBox">
+                      <img src="/images/take_control.jpg" alt="" />
+                    </div>
+                  </td>
+                  <td>
+                    <h4>Jane<br /><span>Users</span></h4>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="60px">
+                    <div class="imgBox">
+                      <img src="/images/take_control.jpg" alt="" />
+                    </div>
+                  </td>
+                  <td>
+                    <h4>Maina<br /><span>Users</span></h4>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="60px">
+                    <div class="imgBox">
+                      <img src="/images/take_control.jpg" alt="" />
+                    </div>
+                  </td>
+                  <td>
+                    <h4>Maina<br /><span>Users</span></h4>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="60px">
+                    <div class="imgBox">
+                      <img src="/images/take_control.jpg" alt="" />
+                    </div>
+                  </td>
+                  <td>
+                    <h4>Maina<br /><span>Users</span></h4>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="60px">
+                    <div class="imgBox">
+                      <img src="/images/take_control.jpg" alt="" />
+                    </div>
+                  </td>
+                  <td>
+                    <h4>Maina<br /><span>Users</span></h4>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="60px">
+                    <div class="imgBox">
+                      <img src="/images/take_control.jpg" alt="" />
+                    </div>
+                  </td>
+                  <td>
+                    <h4>Maina<br /><span>Users</span></h4>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
